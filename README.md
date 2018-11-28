@@ -1,4 +1,4 @@
-# Description
+## Description
 
 > A VuePress.js project
 
