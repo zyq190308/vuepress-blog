@@ -1,28 +1,32 @@
 module.exports = {
-  title: '大前端',
-  description: 'frontend doc',
+  title: 'ZYQ',
+  description: '专注于记录技术点滴',
   themeConfig: {
-    sidebar: 'auto',
-    // activeHeaderLinks: false, // url中hash禁用
-    // displayAllHeaders: true,
     nav: [
-      { text: 'vue', link: '/vue/' },
-      { text: 'react', link: '/react/'},
-      { text: 'angular', link: '/angular/'}
+      { text: 'Vue', link: '/vue/' },
+      { text: 'React', link: '/react/' },
+      { text: 'CSS', link: '/css/' },
+      { text: '其他', link: '/other/' },
+      { text: 'Github', link: 'https://github.com/zyq190308' },
     ],
     sidebar: {
+      '/vue/': [
+        '',
+        'about'
+      ],
       '/react/': [
         '',
-        '/react/main'
+        'react'
       ],
-      '/angular/': [
-        '',
-        '/angular/main'
+      '/css/': [
+        ''
       ],
-      '/': [
-        '/vue/',
-        '/vue/main'
-      ],
+      '/other/': [
+        ''
+      ]
     }
+  },
+  markdown: {
+    lineNumbers: true
   }
 }
