@@ -1,5 +1,6 @@
 ---
 home: true
+heroImage: img/avatar.jpeg
 actionText: 一睹为快 →
 actionLink: /vue/
 features:
