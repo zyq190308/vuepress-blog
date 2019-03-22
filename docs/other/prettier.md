@@ -22,7 +22,7 @@ npm install --global prettier
 
 ## 配置
 
-在项目根目录新建.prettier 文件，此文件是覆盖一些重写配置的位置，prettier 默认会根据你的文件自动来加上一套代码规范。
+在项目根目录新建.prettierrc 文件，此文件是覆盖一些重写配置的位置，prettier 默认会根据你的文件自动来加上一套代码规范。
 
 ```json
 {
