@@ -78,8 +78,7 @@ module.exports = {
     "env": {
         "browser": true,
         "node": true,
-        "es6": true
-        
+        "es6": true     
     }, // 设置eslint所处的环境，避免检查一些全局变量，环境可以选多个,比如你去掉node,就会报一些变量undefined的错
     "globals": {
         "_": true,
@@ -166,7 +165,6 @@ npm install --save-dev husky lint-staged
 如下覆盖：
 ```shell
 #!/bin/bash
-
 
 for file in $(git diff --cached --name-only | grep -E '\.(js|jsx)$')
 
