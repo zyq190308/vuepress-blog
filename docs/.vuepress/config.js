@@ -22,7 +22,8 @@ module.exports = {
         ''
       ],
       '/other/': [
-        ''
+        '',
+        'prettier'
       ]
     }
   },
