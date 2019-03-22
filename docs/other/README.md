@@ -14,21 +14,21 @@ eslint是前端针对js代码的工具，目的就是为了统一的团队的代
 
 安装分为当前项目安装和全局安装，不建议全局装。
 
-```
+```shell
 npm install eslint --save-dev // 当前项目
 ```
 
-```
+```shell
 npm install -g eslint // 全局
 ```
 
 ## 配置文件初始化
 
 安装后还需要一个配置文件，可通过以下命令生成:
-```
+```shell
 eslint --init //全局安装的可以这么写
 ```
-```
+```shell
 ./node_modules/eslint/bin/eslint.js --init // 当前项目安装
 ```
 该过程会提示你选择一些选项，不懂得话直接都是默认就行了，然后会生成类似.eslintrc.(js|json等)后缀的文件，这个就是eslint的配置文件。
@@ -42,7 +42,7 @@ eslint --init //全局安装的可以这么写
 ### 注释配置 
 
 这个的意思就是关闭对alert, console等的检查，这种适合特殊处理，不具有普遍性，不推荐。
-```
+```javascript
 /* eslint-disable no-alert, no-console */
 
 alert('foo');
@@ -109,7 +109,7 @@ module.exports = {
 ### 配合webpack使用
 
 配合webpack使用需要安装eslint-loader和eslint
-```
+```shell
 npm install eslint-loader eslint --save-dev
 ```
 
