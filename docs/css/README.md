@@ -2,6 +2,8 @@
 
 Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
 
+## 基本概念
+
 ```js
 rectObject = object.getBoundingClientRect();
 ```
