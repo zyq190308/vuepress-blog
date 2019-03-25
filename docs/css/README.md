@@ -33,7 +33,7 @@ DOMRect包含的参数：
 ##  应用场景
 这是常见的对是否出现在可视区域的一个典型例子，图片通过margin隐藏在可视区域外，然后滚动后通过getBoundingClientRect().top和offsetTop来判断出现的条件。
 ```html
-<html>
+<!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
 	<title></title>
@@ -67,7 +67,6 @@ DOMRect包含的参数：
 		</div>		
 	</div>
 
-	<input type="button" value="click" onclick="addLeft()" />
 	<script>
 		const box = document.querySelector('.box')
 		const inner = document.querySelector('.inner')
@@ -76,16 +75,13 @@ DOMRect包含的参数：
 		box.addEventListener('scroll', () => {
 			const rect = img.getBoundingClientRect()
 			if (rect.top < img.offsetTop) {
-        if (!img.loaded) {
-          setTimeout(() => {
-            img.loaded = true
-            img.src = img.getAttributes('data-src')
-          }, 4000)
-        }
-				console.log('来到可视区了')
+              if (!img.loaded) {
+                img.loaded = true
+                img.src = img.getAttribute('data-src')
+              }
+              console.log('来到可视区了')
 			}
 		})
-		
 	</script>
 </body>
 </html>
