@@ -23,7 +23,8 @@ module.exports = {
         ''
       ],
       '/css/': [
-        ''
+        '',
+        'scroll'
       ],
       '/other/': [
         '',
