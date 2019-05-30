@@ -28,7 +28,8 @@ module.exports = {
       ],
       '/other/': [
         '',
-        'prettier'
+        'prettier',
+        'mock'
       ]
     }
   },
