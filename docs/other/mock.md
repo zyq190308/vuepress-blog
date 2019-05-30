@@ -1,6 +1,7 @@
 # Mock
 
 mock的意思就是模拟，开发中为了在没有接口前快速开发，必要的数据模拟是很有必要的，接下来我会说说我了解的一些mock方法。
+[代码地址](https://github.com/zyq190308/mock-demo)，master分支是mock-server,base是mockjs。
 
 ## mockjs
 
@@ -89,4 +90,4 @@ const mockFromFile = (app) => {
 
 ## 代理软件映射本地文件
 
-还有一种方案是用Charles或者fiddler之类的代理软件来还真像本地文件来mock
+还有一种方案是用Charles或者fiddler之类的代理软件来映射本地文件来mock
