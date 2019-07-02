@@ -1,6 +1,6 @@
 ## Description
 
-> A VuePress.js project
+> Write Blog by VuePress
 
 ## Build Setup
 
