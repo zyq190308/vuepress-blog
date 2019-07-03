@@ -14,7 +14,7 @@ npm install webpack webpack-cli -D # 安装webpack依赖(4开始要安装俩个�
 ```
 
 
-## 配置文件
+## 基本版 [基本版仓库](https://github.com/zyq190308/custom-webpack-vue/tree/master)
 
 webpack解析配置的时候有一个默认解析的文件，叫webpack.config.js，里面就是配置一些打包的配置。
 在项目根目录下新建一个webpack.confg.js,main.js文件，基本内容如下：
@@ -299,6 +299,176 @@ export default new VueRouter({
 ```
 
 最后打包，发现一个Vue基本环境已经出来了。
+
+
+## 优化 [优化版仓库](https://github.com/zyq190308/custom-webpack-vue/tree/optimize)
+
+首先，我们不在使用npx webpack来构建了，我们用package.json里的scripts脚本来控制，如下：
+```json
+// package.json
+{
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
+```
+然后运行npm run build，结果跟原来一致。
+
+在真实项目中，一般也不会只有一种环境，好的做法就是把配置文件区分开，
+一般会分为三个配置文件：
+1. webpack.base.config.js 公共配置，主要包括开发生产一些通用的loader和plugin等。
+2. webpack.dev.config.js  开发配置，主要包括一些开发需要的服务器，代码调试等。
+3. webpack.prod.config.js 生产配置，主要包括一些打包优化，代码抽离等。
+
+再讲具体几个配置之前，我们来装一下webpack-merge：
+```bash
+# 合并配置文件的
+npm install webpack-merge -D
+```
+
+先看看调整后的webpack.base.config.js：
+```js
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+module.exports = {
+  entry: {
+    app: './src/main.js'
+  },
+  output: {
+    filename: '[name].[chunkhash:8].js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        use: 'vue-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader'
+        ]
+      },
+      {
+        test: /\.(svg|png|jpg|jpeg|gif)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            name: 'imgs/[name].[hash:5].[ext]',
+            limit: 1000
+          }
+        }]
+      }
+    ]
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
+    new VueLoaderPlugin()
+  ]
+}
+```
+
+再看看webpack.dev.config.js，一般开发环境会装一个本地服务器：
+```bash
+npm install webpack-dev-server -D
+```
+这个插件会把文件打包到内存中，并且支持热更新和代理等等。
+
+
+配置如下：
+```js
+// webpack.dev.config.js
+
+const path = require('path')
+const merge = require('webpack-merge');
+const baseWepackConfig = require('./webpack.base.config')
+
+module.exports = merge(baseWepackConfig, {
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map', // 主要是为了错误调试
+  devServer: { // 这是webpack-dev-server的配置项
+    contentBase: path.join(__dirname, 'dist'), //文件读取
+    compress: true, // 压缩
+    port: 9000, // 端口
+    hot: true // 热更新
+  }
+})
+```
+
+我们再来看看webpack.prod.config.js，安装下面几个插件：
+```bash
+npm install mini-css-extract-plugin compression-webpack-plugin optimize-css-assets-webpack-plugin -D
+```
+mini-css-extract-plugin是把css文件从style头部抽离的插件
+compression-webpack-plugin可以对打包的文件做gzip压缩
+optimize-css-assets-webpack-plugin是对css做压缩处理
+具体配置还是看相关插件的文档，配置太多，就不一一讲了。
+```js
+// webpack.prod.config.js
+
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const merge = require('webpack-merge')
+const baseWepackConfig = require('./webpack.base.config')
+
+module.exports = merge(baseWepackConfig, {
+  mode: 'production',
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }, // 详情看SplitChunkPlugin
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})], // 对css做压缩处理
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:5].css' ,
+      chunkFilename: 'css/[id].[contenthash:5].css',
+    }), // 主要是把css抽离一个单独的文件
+    new CompressionPlugin({
+      filename: '[path].gz[query]',
+      test: new RegExp(
+        '\\.(js|css)$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    }) // 对文件做gzip压缩
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+      }
+    ],
+  }
+})
+```
+
+
+
+
+
+
+
+
 
 
 
