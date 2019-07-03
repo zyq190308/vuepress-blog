@@ -39,14 +39,14 @@ module.exports = {
 
 ```
 然后命令行运行：
-```sh
+```bash
 # 我们都知道npm包分为本地包和全局包，npm 5.2开始支持npx，原来我们要运行一个本地包，需要诸如这样node-modules/.bin/mocha --version使用，有了npx，就可以npx mocha --version直接用了。
 npx webpack
 ```
 此时你会看到在dist目录下生成了一个js文件，就是上面entry里配置的内容。webpack4+默认情况下在没有配置mode的情况下，会默认是已production打包，所以看到的是压缩后的js文件。
 然后试着把mode改成'development'，此时文件就是正常没被压缩的，但此时又发现每次打包会生成一个版本的文件，这时候我们需要清除dist文件夹的插件, CleanWepackPlugin，安装
 
-```sh
+```bash
 npm install clean-webpack-plugin -D
 ```
 
@@ -64,7 +64,7 @@ module.exports = {
 然后再次打包，发现打包只生成当前打包的文件了。
 
 为了使用js新语法，我们需要安装babel：
-```sh
+```bash
 npm install @babel/core @babel/preset-env babel-loader -D
 ```
 然后在根目录新建babel.config.js，配置文件如下：
@@ -95,7 +95,7 @@ module.exports = {
 }
 ```
 配置了这些之后会把一些高级语法装换成es5语法，但是有些高级函数是不包含在内的，比如Promise，这时候安装：
-```sh
+```bash
 npm install @babel/polyfill -S
 ```
 然后在babel.config.js中配置如下：
@@ -118,7 +118,7 @@ module.exports = {
 }
 ```
 说了这么多，需要引入HTML了，我们在根目录新建index.html，一般为了把js注入HTML，我们用的是HtmlWepackPlugin，安装：
-```
+```bash
 npm install html-webpack-plugin -D
 ```
 然后在webpack.config.js配置如下：
@@ -147,7 +147,7 @@ module.exports = {
 现在我们要加点样式，也就是css之流。
 我们在src下新建一个assets目录，然后新建一个style.less，要解析less，
 我们需要less，less-loader，css-loader，style-loader，安装
-```sh
+```bash
 # 如果是sass，把less-loader换成sass-loader， less换成node-sass或者dart-sass
 npm install less less-loader css-loader style-loader -D
 ```
@@ -174,16 +174,39 @@ module.exports = {
 ```
 配置之后打包之后样式正常识别。
 
+如果遇见图片，字体之类的文件，我们还需用到url-loader和file-loader，url-loader依赖于file-loader，主要区别是url-loader会把设置小于某个大小的文件压缩成base64：
+```bash
+npm install url-loader file-loader -D
+```
+
+```js
+// webpack.config.js
+module.exports = {
+  module: {
+    rules: [{
+      test: /\.(svg|png|jpg|jpeg|gif)$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          name: 'imgs/[name].[hash:5].[ext]',
+          limit: 1000 // 小于1000byte的会被转成base64
+        }
+      }]
+    }]
+  }
+}
+```
+
 现在我们来看看Vue，要解析Vue文件，当然也是和其他文件一样，需要vue-loader。
 这是[vue-loader](https://vue-loader.vuejs.org/zh/)的官方文档。
 
 解析Vue文件需要的配置如下：
-```sh
+```bash
 npm install vue-loader vue-template-compiler -D
 ```
 
 然后安装Vue系列：
-```sh
+```bash
 npm install vue vue-router -S
 ```
 然后做以下配置，

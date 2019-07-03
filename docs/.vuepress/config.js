@@ -12,8 +12,7 @@ module.exports = {
     ],
     sidebar: {
       '/vue/': [
-        '',
-        'about'
+        ''
       ],
       '/react/': [
         '',
