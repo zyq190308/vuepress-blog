@@ -85,9 +85,9 @@ const mockFromFile = (app) => {
 // }
 ```
 
-当然也可以自己重写一个express服务器，或者网上有现成的，比如easy-mock，RAP等等大厂的线上mock-server，但是个人觉得那个不稳定性太差了。
+当然也可以自己重写一个express服务器，或者网上有现成的，比如easy-mock，RAP等等大厂的线上mock-server，其实也是个不错的选择，但是稳定性相对差点。
 
 
 ## 代理软件映射本地文件
 
-还有一种方案是用Charles或者fiddler之类的代理软件来映射本地文件来mock
+还有一种方案是用Charles或者fiddler之类的代理软件来映射本地文件来mock，正式开发用的比较少。
