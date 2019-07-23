@@ -28,7 +28,8 @@ module.exports = {
       '/other/': [
         '',
         'prettier',
-        'mock'
+        'mock',
+        'stylelint'
       ]
     }
   },
