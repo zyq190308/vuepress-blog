@@ -11,7 +11,7 @@ brew install nginx
 ## nginx.conf配置
 通常现在前端项目build后都会生成类似dist或build这样的目录，如果要想构建后文件夹能被nginx服务器识别，就需要修改nginx.conf这个配置文件。
 大致修改如下：
-```
+```{11}
 server {
     listen       80;
     server_name  localhost;
@@ -31,7 +31,7 @@ server {
 
 ## NGINX代理
 假如前端项目地址为localhost:8080，后端接口地址为localhost:3000，在部署后请求的接口会404，因为不在同一端口下是找不到对应的接口的，此时NGINX可以作为代理服务器来完成这一功能，一般为了区分前端资源，接口都会加个前缀以示区分，这里我举的例子就是以'api'为前缀，大致如下：
-```
+```{4}
 {  
   # 意思就是遇到/api的时候，就等价于请求了http://localhost:3000/api
   location /api {
