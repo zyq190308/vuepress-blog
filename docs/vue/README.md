@@ -29,7 +29,7 @@ const path = require('path')
 module.exports = {
   mode: 'production', // 默认打包环境(ps:production) 内置development和production
   entry: {
-    app: './main.js' // 打包的入口文件
+    app: './src/main.js' // 打包的入口文件
   },
   output: {
     filename: '[name].[chunkhash:8].js', // 打包后的文件名
