@@ -17,7 +17,7 @@ npm install webpack webpack-cli -D # 安装webpack依赖(4开始要安装俩个�
 ## 基本版 [基本版仓库](https://github.com/zyq190308/custom-webpack-vue/tree/master)
 
 webpack解析配置的时候有一个默认解析的文件，叫webpack.config.js，里面就是配置一些打包的配置。
-在项目根目录下新建一个webpack.confg.js,main.js文件，基本内容如下：
+在项目根目录下新建一个webpack.confg.js,src目录下新建main.js文件，基本内容如下：
 ```js
 // src/main.js
 console.log('Hello Webpack!')
@@ -216,6 +216,15 @@ npm install vue vue-router -S
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+  // 基本配置省略
+  module: {
+    rules: [
+      { 
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
+    ]
+  },
   plugins: [
     new VueLoaderPlugin()
   ]
