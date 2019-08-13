@@ -6,7 +6,7 @@
 下面的bash命令依次执行，一个基本的webpack环境安装就完成了。
 
 ```bash
-mkdir custom-webapck-vue # 创建项目文件夹
+mkdir custom-webpack-vue # 创建项目文件夹
 cd custom-webpack-vue
 mkdir src # 源码文件夹
 npm init -y # 初始化package.json
@@ -406,9 +406,9 @@ npm install webpack-dev-server -D
 
 const path = require('path')
 const merge = require('webpack-merge');
-const baseWepackConfig = require('./webpack.base.config')
+const baseWebPackConfig = require('./webpack.base.config')
 
-module.exports = merge(baseWepackConfig, {
+module.exports = merge(baseWebPackConfig, {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map', // 主要是为了错误调试
   devServer: { // 这是webpack-dev-server的配置项
