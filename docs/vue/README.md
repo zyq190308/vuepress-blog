@@ -436,9 +436,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const merge = require('webpack-merge')
-const baseWepackConfig = require('./webpack.base.config')
+const baseWebPackConfig = require('./webpack.base.config')
 
-module.exports = merge(baseWepackConfig, {
+module.exports = merge(baseWebPackConfig, {
   mode: 'production',
   optimization: {
     splitChunks: {
