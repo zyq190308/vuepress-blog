@@ -315,4 +315,8 @@ export default new Vue()
 这个是终极方案，在项目很大的时候这个是最佳选择，这个就不多赘述了，最佳资料见[官网](https://vuex.vuejs.org/zh/)
 
 
+## 补充
+还有类似this.$parent获取父组件，this.$children获取子组件，获取后可以调用组件的属性方法等。
+
+
 
