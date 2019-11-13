@@ -65,6 +65,23 @@ npm install lint-staged husky --save-dev
   },
 ```
 
+## prettier和eslint集成
+prettier主要负责的代码风格问题，一般需要配合eslint来检查一些语法问题。
+1.因为eslint和prettier有部分配置冲突，安装eslint-config-prettier插件来解决冲突，eslint-plugin-prettier就是在eslint中跑prettier的插件,具体如下：
+```bash
+npm i eslint-config-prettier eslint-plugin-prettier --save-dev
+```
+然后在eslint配置文件配置如下
+```js
+// .eslintrc
+{
+  "extends": ["plugin:prettier/recommended"]
+}
+```
+2.在eslint运行prettier
+
+
+
 ## 其他
 
 prettier 也有插件，可以实现保存自动格式化，也有忽略文件.prettierignore
