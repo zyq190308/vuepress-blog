@@ -471,6 +471,60 @@ module.exports = merge(baseWebPackConfig, {
 })
 ```
 
+## 集成Eslint
+在Vue中集成eslint，需要核心eslint,webpack中检查的eslint-loader, 检查Vue文件的的插件eslint-plugin-vue,第三方eslint规则库eslint-config-airbnb。
+按如下安装
+```bash
+npm install eslint eslint-loader eslint-plugin-vue -D
+npx install-peerdeps --dev eslint-config-airbnb
+```
+配置
+```js
+// webpack.dev.config.js
+module: {
+    rules: [
+      { 
+        enforce: 'pre',
+        test: /\.(js|vue)/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ]
+  }
+```
+
+根目录下新建.eslintrc文件
+```js
+{
+  "extends": [
+    "airbnb",
+    "plugin:vue/recommended"
+  ]
+}
+```
+到此运行npm run dev就能按照上面配置的规则检查语法了。
+
+你会发现运行后错误太多一个个改太麻烦，方法是有的，就是在git add后利用eslint自动修复错误。
+安装插件
+```bash
+npm install husky lint-staged -D
+```
+然后在package.json配置如下：
+```js
+// package.json
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{vue,js}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+```
+上面意思就是在你把代码提交到咱存后会自动帮你修复不符合规范的代码，到此eslint集成就OK了。
 
 
 
