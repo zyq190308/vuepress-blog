@@ -58,7 +58,7 @@ console.log('bar');
 ```javascript
 module.exports = {
     root: 'true', // ESLint 一旦发现配置文件中有 "root": true，它就会停止在父级目录中寻找。
-    parser: 'babel-eslint', //设置解析器, 一般情况下默认解析器就行，如果你需要检查例如flow以及一些eslint识别不了的特性时才使用
+    parser: 'babel-eslint', //默认ESlint使用Espree作为解析器，但是一旦我们使用babel的话，我们需要用babel-eslint，使得eslint和babel更好的配合。
     parserOptions: {
         "ecmaVersion": 6,
         "sourceType": "module",
