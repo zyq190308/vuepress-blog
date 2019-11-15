@@ -526,6 +526,21 @@ npm install husky lint-staged -D
 ```
 上面意思就是在你把代码提交到咱存后会自动帮你修复不符合规范的代码，到此eslint集成就OK了。
 
+## 集成Prettier
+上面的eslint只是代码错误检查工具，统一代码风格我们可以使用Prettier。
+国际惯例，又是一顿装，如下：
+```bash
+npm i prettier eslint-config-prettier eslint-plugin-prettier --save-dev
+```
+然后在eslint配置文件配置如下
+```js
+// .eslintrc
+{
+  "extends": ["plugin:prettier/recommended"]
+}
+```
+配合上面讲的，在提交代码前就可以自动format代码风格，以及代码检查。
+具体Prettier用法，可移步[这里](/other/prettier.html)
 
 
 
