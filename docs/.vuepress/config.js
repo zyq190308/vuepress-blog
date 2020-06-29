@@ -13,7 +13,8 @@ module.exports = {
     sidebar: {
       '/vue/': [
         '',
-        'communication'
+        'communication',
+        'vue-style-cover'
       ],
       '/react/': [
         '',
