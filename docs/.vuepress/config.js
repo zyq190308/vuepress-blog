@@ -32,7 +32,8 @@ module.exports = {
         'prettier',
         'mock',
         'stylelint',
-        'nginx'
+        'nginx',
+        'protocol'
       ]
     }
   },
