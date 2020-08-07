@@ -33,7 +33,8 @@ module.exports = {
         'mock',
         'stylelint',
         'nginx',
-        'protocol'
+        'protocol',
+        'ci'
       ]
     }
   },
