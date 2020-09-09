@@ -2,31 +2,20 @@ module.exports = {
   title: 'ZYQ',
   description: '专注于记录技术点滴',
   themeConfig: {
+    sidebarDepth: 3,
     nav: [
       { text: 'Vue', link: '/vue/' },
       { text: 'React', link: '/react/' },
       { text: 'JS', link: '/js/' },
       { text: 'CSS', link: '/css/' },
       { text: '其他', link: '/other/' },
-      { text: 'Github', link: 'https://github.com/zyq190308' },
+      { text: 'Github', link: 'https://github.com/zyq190308' }
     ],
     sidebar: {
-      '/vue/': [
-        '',
-        'communication',
-        'vue-style-cover'
-      ],
-      '/react/': [
-        '',
-        'react'
-      ],
-      '/js/': [
-        ''
-      ],
-      '/css/': [
-        '',
-        'scroll'
-      ],
+      '/vue/': ['', 'communication', 'vue-style-cover', 'vue3'],
+      '/react/': ['', 'react'],
+      '/js/': [''],
+      '/css/': ['', 'scroll'],
       '/other/': [
         '',
         'prettier',
