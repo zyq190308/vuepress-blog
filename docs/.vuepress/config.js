@@ -1,8 +1,11 @@
 module.exports = {
-  title: 'ZYQ',
+  title: 'ZYQ的博客',
   description: '专注于记录技术点滴',
   themeConfig: {
+    logo: '/img/avatar.jpeg',
     sidebarDepth: 3,
+    smoothScroll: true,
+    lastUpdated: 'Last Updated',
     nav: [
       { text: 'Vue', link: '/vue/' },
       { text: 'React', link: '/react/' },
@@ -32,6 +35,8 @@ module.exports = {
   },
   plugins: {
     '@vssue/vuepress-plugin-vssue': {
+      labels: '',
+      locale: 'zh',
       platform: 'github',
       owner: 'zyq190308',
       repo: 'vuepress-blog',

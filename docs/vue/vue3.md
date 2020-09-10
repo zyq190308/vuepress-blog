@@ -23,9 +23,9 @@ vue create vue3-demo
 选择如图 Vue3.0 脚手架就安装 OK 了：
 ![Highlights](../imgs/install1.png)
 
-## Composition api
+## Composition API
 
-Why Composition api ?
+Why Composition API ?
 官方是这么解释的。
 
 > 创建 Vue 组件允许我们将接口的可重复部分及其功能提取到可重用的代码片段中。就可维护性和灵活性而言，仅这一点就可以让我们的应用程序走得很远。然而，我们的共同经验已经证明，仅凭这一点可能还不够，尤其是当应用程序变得非常庞大时——考虑到数百个组件。在处理如此大型的应用程序时，共享和重用代码变得尤为重要。
@@ -267,7 +267,7 @@ export default {
 
 ### Template Refs
 其实就是Vue里面获取组件或者或者DOM节点的api，看例子。
-原来是this.$refs[xxx]，Composition Api this没有了。
+原来是this.$refs[xxx]，Composition API this没有了。
 ```vue
 <template>
   <div ref="root">hello world</div>
@@ -292,5 +292,70 @@ export default {
 
 
 ## Fragment,Teleport,Suspense
+
+### Fragment
+在Vue 3,组件现在支持多根节点组件,即fragments,类似于<code><React.Fragment></React.Fragment></code>,
+下面是3.x和2.x写法对比：
+
+```vue
+<!-- vue3.x -->
+<template>
+  <div>a</div>
+  <div>b</div>
+  <div>c</div>
+</template>
+
+<script>
+export default {};
+</script>
+```
+
+```vue
+<!-- vue2.x -->
+<template>
+  <div>
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
+  </div>
+</template>
+
+<script>
+export default {}
+</script>
+```
+
+### Teleport
+平常我们在写组件时，有时候我们创建的组件不需要局限在祖先组件内部，这时候Teleport就能达到这效果。这个也可以从react找到类似的组件<code><React.Portal></React.Portal></code>。
+下面这个就是直接挂载到body节点了，而不是挂载在当前组件。
+```vue
+<template>
+  <button @click="modalOpen = true">open</button>
+
+  <teleport to="body">
+    <div v-if="modalOpen" class="modal">
+      <div>
+        I'm a teleported modal!
+        (My parent is "body")
+        <button @click="modalOpen = false">Close</button>
+      </div>
+    </div>
+  </teleport>
+</template>
+
+<script>
+import { ref } from "vue";
+
+export default {
+  setup() {
+    let modalOpen = ref(false);
+
+    return {
+      modalOpen
+    };
+  }
+};
+</script>
+```
 
 <Vssue />
