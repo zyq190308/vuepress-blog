@@ -29,5 +29,14 @@ module.exports = {
   },
   markdown: {
     lineNumbers: true
+  },
+  plugins: {
+    '@vssue/vuepress-plugin-vssue': {
+      platform: 'github',
+      owner: 'zyq190308',
+      repo: 'vuepress-blog',
+      clientId: 'e2c6e1286a945e9a232c',
+      clientSecret: '6b55f148e3d92989d70b6b3cc6faebdecab6ba6a'
+    }
   }
 }

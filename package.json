@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/zyq190308/zyq190308.github.io",
   "devDependencies": {
-    "webpack-serve": "^3.0.0-beta.3"
+    "webpack-serve": "^3.0.0-beta.3",
+    "@vssue/api-github-v3": "^1.4.4"
+  },
+  "dependencies": {
+    "@vssue/vuepress-plugin-vssue": "^1.4.6"
   }
 }
