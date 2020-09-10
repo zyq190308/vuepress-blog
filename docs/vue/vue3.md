@@ -96,8 +96,10 @@ export default {
 </script>
 ```
 
-### ref, reactive
+### Reactvity(ref, reactive, computed, watch, watchEffect)
 
+
+#### ref, reactive
 在 vue2.x 版本中，都是用 data 来定义响应式数据，compistion api 中使用 ref 和 reactive 来定义响应式数据。
 它们的区别是一个是定义基本类型数据，一个定义引用类型，还有就是ref包裹setup中需要xxx.value取值，reactive则不需要。
 
@@ -125,6 +127,102 @@ export default {
     }
   }
 }
+</script>
+```
+
+#### computed
+计算属性，写法变了一下。
+```vue
+<template>{{plusOne}}</template>
+
+<script>
+import { ref, computed } from "vue";
+
+export default {
+  setup() {
+    const count = ref(0);
+    const plusOne = computed(() => count.value + 1);
+
+    return {
+      plusOne
+    };
+  }
+};
+</script>
+```
+
+#### watchEffect
+如果我们想要在某个响应式状态更新时做些事情，就用这个方法，类似<code><React.useEffect></React.useEffect></code>。
+```vue
+<template></template>
+
+<script>
+import { ref, watchEffect } from "vue";
+
+export default {
+  setup() {
+    const count = ref(0);
+
+    watchEffect(() => {
+      console.log("watchEffect", count.value);
+    });
+
+    setTimeout(() => {
+      count.value++;
+    }, 1000);
+  }
+};
+</script>
+
+```
+
+#### watch
+和option watch 功能一样，点击按钮就会触发wacth。
+watch的数据格式：可以是有返回值的getter函数，也可以直接是ref。
+```vue
+<template>
+  count:{{count}}/age:{{state.age}}
+  <button @click="handleClick">click</button>
+  <button @click="handleClick2">click2</button>
+</template>
+
+<script>
+import { ref, reactive, watch } from "vue";
+
+export default {
+  setup() {
+    const count = ref(0);
+    const state = reactive({ age: 18 });
+
+    const handleClick = () => {
+      count.value++;
+    };
+
+    const handleClick2 = () => {
+      state.age++;
+    };
+
+    // watching a ref
+    watch(count, (count, prevCount) => {
+      console.log("1", count, prevCount);
+    });
+
+    // watching 有返回值的getter函数
+    watch(
+      () => state.age,
+      (age, prevAge) => {
+        console.log("2", age, prevAge);
+      }
+    );
+
+    return {
+      count,
+      state,
+      handleClick,
+      handleClick2
+    };
+  }
+};
 </script>
 ```
 
