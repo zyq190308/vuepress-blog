@@ -35,7 +35,6 @@ module.exports = {
   },
   plugins: {
     '@vssue/vuepress-plugin-vssue': {
-      labels: '',
       locale: 'zh',
       platform: 'github',
       owner: 'zyq190308',
