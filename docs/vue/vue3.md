@@ -358,4 +358,64 @@ export default {
 </script>
 ```
 
+
+### Suspense
+这个组件的作用就是可以在异步组件未加载渲染前自定义加载状态的组件，可以简单的认为'正在加载中...'。
+
+下面有两个slot，'#default'是异步组件挂载点，'#fallback'一个是加载状态组件挂载。
+如下图：
+![Highlights](../imgs/suspense.gif)
+
+
+```vue
+<!-- SuspenseDemo.vue -->
+<template>
+  <Suspense>
+    <template #default>
+      <MyAsyncComponent/>
+    </template>
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </Suspense>
+</template>
+
+<script>
+import MyAsyncComponent from "./Async";
+
+export default {
+  components: {
+    MyAsyncComponent
+  }
+};
+</script>
+
+```
+
+```vue
+<!-- MyAsyncComponent.vue -->
+<template>
+  <h1>Ive some async work to do before I can render</h1>
+</template>
+
+<script>
+export default {
+  name: "MyAsyncComponent",
+  async setup() {
+    const someAsyncWork = () => {
+      // eslint-disable-next-line
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+          console.log("hello world");
+        }, 3000);
+      });
+    };
+    await someAsyncWork();
+  }
+};
+</script>
+
+```
+
 <Vssue />
