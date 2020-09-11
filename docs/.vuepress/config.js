@@ -15,7 +15,7 @@ module.exports = {
       { text: 'Github', link: 'https://github.com/zyq190308' }
     ],
     sidebar: {
-      '/vue/': ['', 'communication', 'vue-style-cover', 'vue3'],
+      '/vue/': ['', 'communication', 'vue-style-cover', 'vue3', 'vue-all'],
       '/react/': ['', 'react'],
       '/js/': [''],
       '/css/': ['', 'scroll'],
