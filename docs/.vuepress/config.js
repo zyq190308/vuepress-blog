@@ -26,7 +26,8 @@ module.exports = {
         'stylelint',
         'nginx',
         'protocol',
-        'ci'
+        'ci',
+        'dotenv'
       ]
     }
   },
