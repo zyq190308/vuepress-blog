@@ -17,7 +17,7 @@ module.exports = {
     sidebar: {
       '/vue/': ['', 'communication', 'vue-style-cover', 'vue3', 'vue-all'],
       '/react/': ['', 'react'],
-      '/js/': [''],
+      // '/js/': [''],
       '/css/': ['', 'scroll'],
       '/other/': [
         '',
