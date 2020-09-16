@@ -4,8 +4,8 @@ module.exports = {
   themeConfig: {
     logo: '/img/avatar.jpeg',
     sidebarDepth: 3,
+    displayAllHeaders: true,
     smoothScroll: true,
-    lastUpdated: 'Last Updated',
     nav: [
       { text: 'Vue', link: '/vue/' },
       { text: 'React', link: '/react/' },
