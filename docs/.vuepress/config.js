@@ -21,6 +21,7 @@ module.exports = {
       '/css/': ['', 'scroll'],
       '/other/': [
         '',
+        'docker',
         'commit',
         'prettier',
         'mock',
